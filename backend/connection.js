@@ -4,27 +4,4 @@ const sequelize = new Sequelize('Brainly', 'root', '', {
     dialect: 'mysql'
 })
 
-const usuarios = sequelize.define('usuarios', {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
-    },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    email: {
-        type: Sequelize.STRING,
-        primaryKey: true,
-        allowNull: false
-    },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false
-    }
-})
-usuarios.sync()
-
-module.exports = usuarios
+module.exports = sequelize
