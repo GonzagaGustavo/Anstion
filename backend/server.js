@@ -4,11 +4,13 @@ const bodyParser = require("body-parser")
 const app = express()
 const DB = require('./connection.js')
 const routeUser = require('./Login/create.js')
+const routerP = require("./Perguntas/createP.js")
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: 'true'}))
 
 app.use(routeUser)
+app.use("/perguntas", routerP)
 
 app.get("/", (req, res) => {
     res.send("Esta página está reservada para um Servidor")
