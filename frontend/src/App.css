@@ -73,11 +73,14 @@ nav {
   height: 10%;
 }
 .container-p {
+  height: 16vh;
+  width: 40vw;
   background-color: rgb(255, 166, 0);
   border-radius: 10px;
-  margin: 2%;
+  margin: 5px;
   font-family: 'Fredoka One', cursive;
   max-width: 700px;
+  min-width: 200px;
 }
 .btn-res {
   background-color: transparent;
@@ -85,7 +88,6 @@ nav {
   border-radius: 15px;
   padding: 1%;
   margin: 5px;
-  margin-left: 84%;
   transition: 0.3s linear;
 }
 .btn-res:hover {
@@ -110,8 +112,19 @@ nav {
 .ask:hover {
   color: white;
   border: 1px solid white;
+  cursor: pointer;
 }
 .icon-ask {
   height: 100%;
   width: 100%;
+}
+.container {
+  justify-content: center;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+a {
+  text-decoration: none;
 }

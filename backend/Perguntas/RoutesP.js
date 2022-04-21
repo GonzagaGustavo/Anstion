@@ -32,5 +32,10 @@ routerP.post("/create", async (req, res) => {
     })
     res.send("Pergunta criada!")
 })
+routerP.get("/getQuestions", async (req, res) => {
+    const p = await perguntas.findAll({})
+    res.send(p)
+    console.log(p)
+})
 
 module.exports = routerP
