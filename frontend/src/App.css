@@ -128,3 +128,68 @@ nav {
 a {
   text-decoration: none;
 }
+.t-container {
+  height: 16vh;
+  width: 90vw;
+  background-color: rgb(255, 166, 0);
+  border-radius: 10px 10px 0 0;
+  margin: 1%;
+  font-family: 'Fredoka One', cursive;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#text-area-r {
+  padding: 2px;
+  height: 30vh;
+  width: 90vw;
+  background-color: rgb(224, 216, 205);
+  border-radius: 0px 0px 10px 10px;
+  outline: none;
+  border: none;
+}
+#text-area-r:focus {
+  border: 1px solid rgb(255, 166, 0);
+}
+.resposta-screen {
+  background-color: rgb(81, 81, 218);
+  border-radius: 10px;
+  font-size: larger;
+  text-align: center;
+  min-width: 20%;
+  width: fit-content;
+  padding: 0.7%;
+  margin: 1%;
+}
+.thank {
+  margin: 0px;
+  color: white;
+}
+p {
+  margin: 0;
+}
+.yellow {
+  color: yellow;
+}
+.back {
+  position: absolute;
+  top: 0;
+  left: -1.5%;
+  height: 7%;
+  width: 7%;
+}
+.btn-sendRes {
+  width: auto;
+  border: none;
+  background-color: green;
+  padding: 2px;
+  border-radius: 0 0 10px 10px;
+  width: 10%;
+  min-width: fit-content;
+}

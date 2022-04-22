@@ -37,5 +37,12 @@ routerR.post("/getRespostas", async (req, res) => {
     })
     res.send(info)
 })
+routerR.post("/saveRes", async (req, res) => {
+    await respostas.create({
+        pergunta_id: req.body.pergunta_id,
+        resposta: req.body.resposta
+    })
+    res.send("Resposta adicionada")
+})
 
 module.exports = routerR
