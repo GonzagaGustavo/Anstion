@@ -1,6 +1,7 @@
 const express = require("express")
 const routeUser = express.Router()
 const Sequelize = require('sequelize')
+const generateToken = require("../utils.js")
 const sequelize = require('./../connection.js')
 
 const usuarios = sequelize.define('usuarios', {
@@ -35,7 +36,7 @@ routeUser.post("/createLogin", (req, res) => {
 })
 
 routeUser.post("/verifyLogin", async (req, res) => {
-    const info = await usuarios.findAll({
+    const info = await usuarios.findOne({
         where: {
             email: req.body.email,
             password: req.body.password
@@ -45,8 +46,23 @@ routeUser.post("/verifyLogin", async (req, res) => {
     if(info.length == 0) {
         res.send("nouser")
     } else {
-        res.send("user")
+        const user = info.dataValues
+        console.log(user)
+        let saves = {
+            id: user.id,
+            token: generateToken(user)
+        }
+        res.send(saves)
     }
+})
+routeUser.post("/getUser", async (req, res) => {
+    const info = await usuarios.findOne({
+        where: {
+            id: req.body.id,
+            email: req.body.id
+        }
+    })
+    res.send(info)
 })
 
 module.exports = routeUser

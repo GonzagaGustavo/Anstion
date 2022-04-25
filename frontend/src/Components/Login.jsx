@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import "./../App.css";
 
 function Login() {
@@ -15,7 +16,8 @@ function send() {
         if(res.data === "nouser") {
             document.querySelector(".err").innerText = "Email ou Senha Incorretos!"
         } else {
-            
+            Cookies.set('user_id', res.data.id, {expires: 60 * 60 * 24 * 365})
+            Cookies.set('token', res.data.token, {expires: 60 * 60 * 24 * 365})
         }
     })
 }
