@@ -7,45 +7,55 @@ import { BsFileEarmarkPlus } from "react-icons/bs";
 function Home() {
   const [perguntas, setPerguntas] = useState([]);
   const [logged, setLogged] = useState(false);
-  const [userinfo, setUserinfo] = useState({});
+  const [login, setLogin] = useState("");
 
   useEffect(() => {
-    axios
-      .get("/perguntas/getQuestions")
-      .then((res) => {
-        setPerguntas(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    //Autenticação de usuario
-    if (Cookies.get("user") || Cookies.get("token")) {
-      let id = Cookies.get("user");
-      let token = Cookies.get("token");
-      //Erro aqui! Se vira kkk
-      let user = jwt.verify(token, process.env.JWT_SECRET);
-      if (user.id === id) {
-        let infos = {
-          id: user.id,
-          email: user.email,
-        };
-        axios.post("/getUser", infos).then((res) => {
-          setUserinfo(res.data);
+    async function a() {
+      axios
+        .get("/perguntas/getQuestions")
+        .then((res) => {
+          setPerguntas(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        setLogged(true);
-        console.log(userinfo);
+      //Autenticação de usuario
+      if (Cookies.get("user_id") && Cookies.get("token")) {
+        let id = Cookies.get("user_id");
+        let token = Cookies.get("token");
+        //Decodificando o token e buscando as informações no DB
+        let user = jwt.decode(token, process.env.JWT_SECRET);
+        if (user.id == id) {
+          let infos = {
+            id: user.id,
+            email: user.email,
+          };
+          await axios.post("/getUser", infos).then((res) => {
+            setLogin(res.data);
+          });
+          setLogged(true);
+        } else {
+          setLogged(false);
+        }
       } else {
         setLogged(false);
       }
-    } else {
-      setLogged(false);
-      console.log(logged);
     }
+    a();
   }, []);
-
   return (
     <>
-      <nav></nav>
+      <nav>
+        {logged ? (
+          <>
+          
+          </>
+        ) : (
+          <>
+            <button className="btn-login" onClick={() => window.location.href="/login"}>Entrar</button>
+          </>
+        )}
+      </nav>
       <div className="container">
         {perguntas.map((pergunta) => (
           <div className="container-p" key={pergunta.id}>

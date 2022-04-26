@@ -59,9 +59,10 @@ routeUser.post("/getUser", async (req, res) => {
     const info = await usuarios.findOne({
         where: {
             id: req.body.id,
-            email: req.body.id
+            email: req.body.email
         }
     })
+    console.log(info)
     res.send(info)
 })
 
