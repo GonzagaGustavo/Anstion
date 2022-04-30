@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
 import "./App.css";
+import AskQuestion from "./Components/AskQuestion";
 import Err from "./Components/Err";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/*" element={<Err />}></Route>
           <Route path="/pergunta/:id" element={<PerguntaScreen />}></Route>
+          <Route path="/AskAQuestion" element={<AskQuestion />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

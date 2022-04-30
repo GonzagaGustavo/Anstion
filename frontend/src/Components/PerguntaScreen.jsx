@@ -28,16 +28,17 @@ function PerguntaScreen() {
   }, []);
 
   function sendRes() {
-    if (!text === "") {
-      let info = {
-        pergunta_id: params.id,
-        resposta: text,
-      };
-      axios.post("/respostas/saveRes", info).then((res) => {
-        alert(res.data);
-      });
+    if (text === "") {
+      alert("Escreva alguma resposta")
     } else {
-        alert("Escreva alguma resposta")
+        let info = {
+          pergunta_id: params.id,
+          resposta: text,
+        };
+        axios.post("/respostas/saveRes", info).then((res) => {
+          alert(res.data);
+          setText("")
+        });
     }
   }
   return (

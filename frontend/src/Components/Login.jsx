@@ -18,6 +18,7 @@ function send() {
         } else {
             Cookies.set('user_id', res.data.id, {expires: 60 * 60 * 24 * 365})
             Cookies.set('token', res.data.token, {expires: 60 * 60 * 24 * 365})
+            window.location.href="/"
         }
     })
 }

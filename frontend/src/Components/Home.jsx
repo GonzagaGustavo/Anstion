@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwt from "jsonwebtoken";
 import { BsFileEarmarkPlus } from "react-icons/bs";
+import { BiUserCircle } from "react-icons/bi";
 
 function Home() {
   const [perguntas, setPerguntas] = useState([]);
@@ -45,17 +46,25 @@ function Home() {
   }, []);
   return (
     <>
-      <nav>
-        {logged ? (
-          <>
-          
-          </>
-        ) : (
-          <>
-            <button className="btn-login" onClick={() => window.location.href="/login"}>Entrar</button>
-          </>
-        )}
-      </nav>
+      {logged ? (
+        <nav className="nav2">
+          <h1 className="logo">Anstion</h1>
+          <div className="user-name">
+            <BiUserCircle />
+            <p>{login.name}</p>
+          </div>
+        </nav>
+      ) : (
+        <nav className="nav1">
+          <button
+            className="btn-login"
+            onClick={() => (window.location.href = "/login")}
+          >
+            Entrar
+          </button>
+        </nav>
+      )}
+
       <div className="container">
         {perguntas.map((pergunta) => (
           <div className="container-p" key={pergunta.id}>
@@ -64,13 +73,20 @@ function Home() {
                 {`${pergunta.pergunta}`.substring(0, 33)}
               </h2>
             </a>
-            <button className="btn-res">Responder</button>
+            <button
+              className="btn-res"
+              onClick={() =>
+                (window.location.href = `/pergunta/${pergunta.id}`)
+              }
+            >
+              Responder
+            </button>
           </div>
         ))}
       </div>
-      <div className="ask" title="Fazer uma pergunta">
+      <a href="/askAQuestion" className="ask" title="Fazer uma pergunta">
         <BsFileEarmarkPlus className="icon-ask" />
-      </div>
+      </a>
     </>
   );
 }
