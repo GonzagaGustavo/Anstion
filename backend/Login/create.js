@@ -42,8 +42,8 @@ routeUser.post("/verifyLogin", async (req, res) => {
             password: req.body.password
         }
     })
-    console.log(info.length)
-    if(info.length == 0) {
+    console.log(info)
+    if(info === null) {
         res.send("nouser")
     } else {
         const user = info.dataValues

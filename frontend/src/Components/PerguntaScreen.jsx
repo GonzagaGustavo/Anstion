@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { RiEmotionHappyFill } from "react-icons/ri";
 import { MdKeyboardBackspace } from "react-icons/md";
+import triste from './../triste.svg'
 
 function PerguntaScreen() {
   const [pergunta, setPergunta] = useState([]);
@@ -26,6 +27,7 @@ function PerguntaScreen() {
         console.log(err);
       });
   }, []);
+document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion" 
 
   function sendRes() {
     if (text === "") {
@@ -60,7 +62,15 @@ function PerguntaScreen() {
           Responder
         </button>
       </div>
-
+      {respostas.length === 0 ? (
+        <div className="no-res">
+          <img src={triste} alt="" className="triste-svg" />
+          <h1>Ainda não há resposta para esta pergunta!</h1>
+          <h1></h1>
+        </div>
+      ): (
+        <></>
+      )}
       {respostas.map((resposta) => (
         <div className="resposta-screen">
           <p>{resposta.resposta}</p>

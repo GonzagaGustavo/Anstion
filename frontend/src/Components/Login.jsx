@@ -7,7 +7,16 @@ function Login() {
 const [email, setEmail] = useState("")
 const [senha, setSenha] = useState("")
 
+document.addEventListener('keypress', (e) => {
+  if(e.key === 'Enter') {
+    send()
+  }
+})
+
 function send() {
+  if(email === "" || senha === "") {
+    document.querySelector(".err").innerText = "Email ou Senha Incorretos!"
+  } else {
     let form = {
         email: email,
         password: senha
@@ -21,6 +30,7 @@ function send() {
             window.location.href="/"
         }
     })
+  }
 }
 
   return (
@@ -37,6 +47,7 @@ function send() {
           <input type="email" placeholder="Email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Senha" className="input" value={senha} onChange={(e) => setSenha(e.target.value)} />
           <button className="btn-entrar" onClick={send}>Entrar</button>
+          <button className="btn-criarC" onClick={send}>Criar Conta</button>
         </div>
       </div>
     </div>

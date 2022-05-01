@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 .home-img {
@@ -39,9 +39,22 @@
   border-radius: 4px;
   background-color: orange;
   border: none;
-  box-shadow: 1px 1px, -1px 1px rgb(255, 166, 0);
+  box-shadow: 1px 1px, -1px 1px #ffa600;
 }
 .btn-entrar:active {
+  box-shadow: none;
+}
+.btn-criarC {
+  margin: 2%;
+  width: 35%;
+  height: 9%;
+  padding: 1%;
+  border-radius: 4px;
+  background-color: rgb(81, 81, 218);
+  border: none;
+  box-shadow: -1px 1px, 1px 1px rgb(81, 81, 218);
+}
+.btn-criarC:active {
   box-shadow: none;
 }
 hr {
@@ -250,10 +263,28 @@ p {
 }
 .nav2 {
   display: flex;
+  position: relative;
+}
+.logo {
+  margin: 0.5%;
+  font-family: 'Bangers', cursive;
 }
 .user-name {
   display: flex;
   align-items: center;
   font-weight: bold;
   font-size: larger;
+  position: absolute;
+  right: 0px;
+  margin: 1%;
+}
+.no-res {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.triste-svg {
+  margin: 1%;
+  height: 30vh;
 }

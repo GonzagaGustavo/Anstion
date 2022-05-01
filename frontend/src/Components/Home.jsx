@@ -7,7 +7,7 @@ import { BiUserCircle } from "react-icons/bi";
 
 function Home() {
   const [perguntas, setPerguntas] = useState([]);
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(null);
   const [login, setLogin] = useState("");
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function Home() {
     <>
       {logged ? (
         <nav className="nav2">
-          <h1 className="logo">Anstion</h1>
+          <h1 className="logo">AnsTion</h1>
           <div className="user-name">
             <BiUserCircle />
             <p>{login.name}</p>
