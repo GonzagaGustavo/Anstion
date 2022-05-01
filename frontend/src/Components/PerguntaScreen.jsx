@@ -74,7 +74,9 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
       {respostas.map((resposta) => (
         <div className="resposta-screen">
           <p>{resposta.resposta}</p>
+          <div className="num-obri">
           <RiEmotionHappyFill className="thank" />
+          </div>
         </div>
       ))}
     </>

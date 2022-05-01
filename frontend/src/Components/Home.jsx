@@ -44,14 +44,25 @@ function Home() {
     }
     a();
   }, []);
+
+  function signout() {
+    Cookies.remove("user_id")
+    Cookies.remove("token")
+    window.location.reload()
+  }
   return (
     <>
       {logged ? (
         <nav className="nav2">
           <h1 className="logo">AnsTion</h1>
           <div className="user-name">
-            <BiUserCircle />
-            <p>{login.name}</p>
+            <p className="signin-1">
+              <BiUserCircle />
+              {login.name}
+            </p>
+            <ul className="dropdown-content">
+              <p onClick={signout} className="pointer" >Sair</p>
+            </ul>
           </div>
         </nav>
       ) : (

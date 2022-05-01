@@ -184,9 +184,6 @@ a {
 p {
   margin: 0;
 }
-.yellow {
-  color: yellow;
-}
 .back {
   position: absolute;
   top: 0;
@@ -270,13 +267,16 @@ p {
   font-family: 'Bangers', cursive;
 }
 .user-name {
-  display: flex;
+  display: inline-block;
   align-items: center;
   font-weight: bold;
   font-size: larger;
   position: absolute;
   right: 0px;
   margin: 1%;
+  background-color: #ffa600;
+  border-radius: 10px;
+  padding: 0.3rem;
 }
 .no-res {
   width: 100%;
@@ -287,4 +287,25 @@ p {
 .triste-svg {
   margin: 1%;
   height: 30vh;
+}
+.num-obri {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dropdown-content {
+  display: none;
+  position: relative;
+  right: 0px;
+  z-index: 1;
+  margin: 0;
+}
+.user-name:hover .dropdown-content {
+  display: block;
+}
+.user-name:hover .signin-1 {
+  border-bottom: 1px solid black;
+}
+.pointer {
+  cursor: pointer;
 }
