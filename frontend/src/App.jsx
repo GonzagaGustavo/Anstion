@@ -6,6 +6,7 @@ import Err from "./Components/Err";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import PerguntaScreen from "./Components/PerguntaScreen";
+import Profile from "./Components/Profile";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/*" element={<Err />}></Route>
           <Route path="/pergunta/:id" element={<PerguntaScreen />}></Route>
           <Route path="/AskAQuestion" element={<AskQuestion />}></Route>
+          <Route path="/profile/:id" element={<Profile />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

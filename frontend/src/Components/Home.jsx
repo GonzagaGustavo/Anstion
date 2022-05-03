@@ -61,6 +61,7 @@ function Home() {
               {login.name}
             </p>
             <ul className="dropdown-content">
+              <a href={`/profile/${login.id}`} className="link-pro">Perfil</a>
               <p onClick={signout} className="pointer" >Sair</p>
             </ul>
           </div>

@@ -45,5 +45,13 @@ routerP.post("/getOneQuestion", async (req, res) => {
     })
     res.send(p)
 })
+routerP.post("/getQuestionByUser", async (req, res) => {
+    const p = await perguntas.findAll({
+        where: {
+            user_id: req.body.user_id
+        }
+    })
+    res.send(p)
+})
 
 module.exports = routerP

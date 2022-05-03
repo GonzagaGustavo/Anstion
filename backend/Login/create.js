@@ -65,5 +65,14 @@ routeUser.post("/getUser", async (req, res) => {
     console.log(info)
     res.send(info)
 })
+routeUser.post("/getUserbyID", async (req, res) => {
+    const info = await usuarios.findOne({
+        where: {
+            id: req.body.id
+        }
+    })
+    console.log(info)
+    res.send(info)
+})
 
 module.exports = routeUser
