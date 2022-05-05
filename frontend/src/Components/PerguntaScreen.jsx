@@ -4,8 +4,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { RiEmotionHappyFill } from "react-icons/ri";
 import { MdKeyboardBackspace } from "react-icons/md";
 import triste from './../triste.svg'
+import Cookies from "js-cookie";
+import jwt from 'jsonwebtoken' 
 
 function PerguntaScreen() {
+  const [logged, setLogged] = useState(false)
   const [pergunta, setPergunta] = useState([]);
   const [respostas, setRespostas] = useState([]);
   const [text, setText] = useState("");
@@ -13,6 +16,20 @@ function PerguntaScreen() {
   const history = useNavigate();
 
   useEffect(() => {
+    // Verificando se está logado
+    if (Cookies.get("user_id") && Cookies.get("token")) {
+      let id = Cookies.get("user_id");
+        let token = Cookies.get("token");
+        //Decodificando o token e buscando as informações no DB
+        let user = jwt.decode(token, process.env.JWT_SECRET);
+        if (user.id == id) {
+          setLogged(true)
+        } else {
+          setLogged(false)
+        }
+    } else {
+      setLogged(false)
+    }
     //Pegando pergunta
     axios.post("/perguntas/getOneQuestion", { id: params.id }).then((res) => {
       setPergunta(res.data[0]);
@@ -33,6 +50,7 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
     if (text === "") {
       alert("Escreva alguma resposta")
     } else {
+      if(logged) {
         let info = {
           pergunta_id: params.id,
           resposta: text,
@@ -41,6 +59,9 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
           alert(res.data);
           setText("")
         });
+      } else {
+        alert("Faça o login para responder!")
+      }
     }
   }
   return (

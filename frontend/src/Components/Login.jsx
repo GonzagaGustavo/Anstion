@@ -47,7 +47,7 @@ function send() {
           <input type="email" placeholder="Email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Senha" className="input" value={senha} onChange={(e) => setSenha(e.target.value)} />
           <button className="btn-entrar" onClick={send}>Entrar</button>
-          <button className="btn-criarC" onClick={send}>Criar Conta</button>
+          <button className="btn-criarC" onClick={() => window.location.href="/../createAccount"}>Criar Conta</button>
         </div>
       </div>
     </div>
