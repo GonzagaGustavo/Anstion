@@ -316,3 +316,21 @@ p {
   color: black;
   text-align: start;
 }
+.container-pro {
+  display: flex;
+  flex-direction: column;
+  background-color: #666;
+  border-radius: 10px;
+  margin: 1%;
+  height: fit-content;
+  width: 80%;
+  padding: 2vh;
+}
+.img-d {
+  height: 100%;
+  width: 100%;
+}
+.img-div {
+  height: 50%;
+  width: 50%;
+}
