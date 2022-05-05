@@ -19,4 +19,4 @@ app.use("/respostas", routerR)
 app.get("/", (req, res) => {
     res.send("Esta página está reservada para um Servidor")
 })
-app.listen(8000, () => console.log("Porta 8000"))
+app.listen(process.env.PORT || 3000, () => console.log("Porta 8000"))
