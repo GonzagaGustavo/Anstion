@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
-import axios from "axios";
+import api from "./../api.js";
 import Cookies from "js-cookie";
 import jwt from "jsonwebtoken";
 
@@ -24,7 +24,7 @@ function AskQuestion() {
     } else {
       setLogged(false)
     }
-  });
+  }, []);
 
   function fazerP() {
     if(logged) {
@@ -37,7 +37,7 @@ function AskQuestion() {
           user_id: user.id,
           pergunta: text
         }
-        axios.post("/perguntas/create", info).then(res => {
+        api.post("/perguntas/create", info).then(res => {
           alert(res.data)
         })
       }

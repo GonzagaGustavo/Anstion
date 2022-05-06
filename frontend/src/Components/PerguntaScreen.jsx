@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./../api.js";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { RiEmotionHappyFill } from "react-icons/ri";
@@ -31,11 +31,11 @@ function PerguntaScreen() {
       setLogged(false)
     }
     //Pegando pergunta
-    axios.post("/perguntas/getOneQuestion", { id: params.id }).then((res) => {
+    api.post("/perguntas/getOneQuestion", { id: params.id }).then((res) => {
       setPergunta(res.data[0]);
     });
     //Pegando respostas
-    axios
+    api
       .post("/respostas/getRespostas", { id: params.id })
       .then((res) => {
         setRespostas(res.data);
@@ -55,7 +55,7 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
           pergunta_id: params.id,
           resposta: text,
         };
-        axios.post("/respostas/saveRes", info).then((res) => {
+        api.post("/respostas/saveRes", info).then((res) => {
           alert(res.data);
           setText("")
         });

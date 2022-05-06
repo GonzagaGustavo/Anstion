@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from "./../api.js";
 import React, { useState } from 'react'
 
 function Createacconunt() {
@@ -21,7 +21,7 @@ function create() {
                     email: email,
                     password: password
                 }
-                axios.post("/createLogin", info).then(res => {
+                api.post("/createLogin", info).then(res => {
                     alert(res.data)
                     window.location.href="/../login"
                 })

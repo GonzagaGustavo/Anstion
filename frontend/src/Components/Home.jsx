@@ -1,9 +1,10 @@
-import axios from "axios";
+import api from "./../api.js";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwt from "jsonwebtoken";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { BiUserCircle } from "react-icons/bi";
+import axios from "axios";
 
 function Home() {
   const [perguntas, setPerguntas] = useState([]);
@@ -12,7 +13,7 @@ function Home() {
 
   useEffect(() => {
     async function a() {
-      axios
+      api
         .get("/perguntas/getQuestions")
         .then((res) => {
           setPerguntas(res.data);
@@ -31,7 +32,7 @@ function Home() {
             id: user.id,
             email: user.email,
           };
-          await axios.post("/getUser", infos).then((res) => {
+          await api.post("/getUser", infos).then((res) => {
             setLogin(res.data);
           });
           setLogged(true);

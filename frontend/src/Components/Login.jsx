@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import api from "./../api.js";
 import Cookies from 'js-cookie'
 import "./../App.css";
 
@@ -21,7 +21,7 @@ function send() {
         email: email,
         password: senha
     }
-    axios.post("/verifyLogin", form).then(res => {
+    api.post("/verifyLogin", form).then(res => {
         if(res.data === "nouser") {
             document.querySelector(".err").innerText = "Email ou Senha Incorretos!"
         } else {
