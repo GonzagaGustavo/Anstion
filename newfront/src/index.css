@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   width: 100vw;
+  background-color: #FFF5AF;
 }
 
 code {
@@ -16,4 +17,7 @@ code {
 #root {
   height: 100%;
   width: 100%;
+}
+a {
+  text-decoration: none;
 }
