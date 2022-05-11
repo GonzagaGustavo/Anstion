@@ -7,6 +7,7 @@ import { RiEmotionHappyFill } from 'react-icons/ri'
 import { toast } from "react-toastify";
 
 function PerguntaScreen() {
+  const [loading, setLoading] = useState(true)
     const [pergunta, setPergunta] = useState([])
     const [respostas, setRespostas] = useState([])
     const [text, setText] = useState("")
@@ -17,6 +18,7 @@ useEffect(() => {
     //Pegando Pergunta
     axios.post("/perguntas/getOneQuestion", { id: params.id }).then((res) => {
         setPergunta(res.data[0]);
+        setLoading(false)
       });
       //Pegando respostas
     axios
@@ -27,6 +29,7 @@ useEffect(() => {
     .catch((err) => {
       console.log(err);
     });
+    
 }, [])
 document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
 
@@ -49,7 +52,16 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
     <MdKeyboardBackspace className="back" onClick={() => history(-1)} />
       <div className="center">
         <div className="t-container">
-          <h1>{pergunta.pergunta}</h1>
+          {loading ? (
+            <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          ) : (
+            <h1>{pergunta.pergunta}</h1>
+          )}
+          
         </div>
         <textarea
           id="text-area-r"

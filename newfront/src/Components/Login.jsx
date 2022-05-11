@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import api from "./../api.js";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Cookies from 'js-cookie'
 import "./../App.css";
 
 function Login() {
 const [email, setEmail] = useState("")
 const [senha, setSenha] = useState("")
+
+useEffect(() => {
+  document.querySelector("header").style.display = "none"
+  document.querySelector("main").style.height = "100%"
+}, [])
 
 document.addEventListener('keypress', (e) => {
   if(e.key === 'Enter') {
@@ -21,7 +26,7 @@ function send() {
         email: email,
         password: senha
     }
-    api.post("/verifyLogin", form).then(res => {
+    axios.post("/verifyLogin", form).then(res => {
         if(res.data === "nouser") {
             document.querySelector(".err").innerText = "Email ou Senha Incorretos!"
         } else {

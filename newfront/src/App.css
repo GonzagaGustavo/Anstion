@@ -132,3 +132,106 @@ p {
   margin: 1%;
   height: 30vh;
 }
+.dropdown-content {
+  display: none;
+  position: relative;
+  right: 0px;
+  z-index: 1;
+  margin: 0;
+}
+.user-name:hover .dropdown-content {
+  display: block;
+}
+.user-name:hover .signin-1 {
+  border-bottom: 1px solid black;
+}
+.pointer {
+  cursor: pointer;
+}
+.pointer:hover {
+  color: red;
+}
+.link-pro {
+  color: black;
+  text-align: start;
+}
+.home-img {
+  width: 100%;
+  height: 100%;
+}
+.img-container {
+  width: 40%;
+  height: 100%;
+}
+.flex-home {
+  display: flex;
+  height: 100%;
+}
+.form-home {
+  width: 60%;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+}
+.input {
+  border: 1px solid orange;
+  border-radius: 4px;
+  height: 9%;
+  padding: 1%;
+  margin: 1%;
+}
+.input:focus {
+  outline: none;
+  border: 1px solid blue;
+}
+.btn-entrar {
+  margin: 2%;
+  width: 30%;
+  height: 10%;
+  padding: 1%;
+  border-radius: 4px;
+  background-color: orange;
+  border: none;
+  box-shadow: 1px 1px, -1px 1px #ffa600;
+}
+.btn-entrar:active {
+  box-shadow: none;
+}
+.btn-criarC {
+  margin: 2%;
+  width: 35%;
+  height: 9%;
+  padding: 1%;
+  border-radius: 4px;
+  background-color: rgb(81, 81, 218);
+  border: none;
+  box-shadow: -1px 1px, 1px 1px rgb(81, 81, 218);
+}
+.btn-criarC:active {
+  box-shadow: none;
+}
+hr {
+  width: 10%;
+  border-color: rgb(255, 166, 0);
+  margin-bottom: 5%;
+}
+.flex-form {
+  height: 60%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+}
+.h1-home {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  font-family: 'Fredoka One', cursive;
+}
+.facaL {
+  font-family: 'Advent Pro', sans-serif;
+}
+.err {
+  color: red;
+}

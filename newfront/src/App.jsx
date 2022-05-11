@@ -1,14 +1,52 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Err from "./Components/Err";
 import Home from "./Components/Home";
 import PerguntaScreen from "./Components/PerguntaScreen";
-
+import { BiUserCircle } from 'react-icons/bi'
+import Login from "./Components/Login";
 
 function App() {
+const [logged, setLogged] = useState(false)
+const [login, setLogin] = useState([])
+
+useEffect(() => {
+    //Autenticação de usuario
+    if (Cookies.get("user_id") && Cookies.get("token")) {
+      let id = Cookies.get("user_id");
+      let token = Cookies.get("token");
+      //Decodificando o token e buscando as informações no DB
+      let infos = {
+        id: id,
+        token: token
+      }
+      axios.post('/getUser', infos).then(res => {
+        if(res.data === false) {
+          setLogged(false)
+          console.log("oi")
+        } else {
+          setLogged(true)
+          setLogin(res.data)
+        }
+      })
+    } else {
+      setLogged(false);
+      
+    }
+    console.log(login)
+}, [])
+
+function signout() {
+  Cookies.remove("user_id")
+  Cookies.remove("token")
+  window.location.reload()
+}
+
   return (
   <BrowserRouter>
   <ToastContainer autoClose={3000} />
@@ -77,11 +115,27 @@ function App() {
                   <a class="nav-link disabled">Disabled</a>
                 </li>
               </ul>
-              <form class="d-flex">
-                <button className="btn btn-outline-success" style={{backgroundColor: "rgb(255, 255, 0)", border: "2px solid rgb(255, 166, 0)", color: "black"}} type="submit">
+              <div className="d-flex">
+                {logged ? (
+                  <div className="user-name">
+                  <p className="signin-1">
+                    <BiUserCircle />
+                    {login.name}
+                  </p>
+                  <ul className="dropdown-content">
+                    <a href={`/profile/${login.id}`} className="link-pro">Perfil</a>
+                    <p onClick={signout} className="pointer" >Sair</p>
+                  </ul>
+                </div>
+                ) : (
+                  <a href="/login">
+                  <button className="btn btn-outline-success" style={{backgroundColor: "rgb(255, 255, 0)", border: "2px solid rgb(255, 166, 0)", color: "black"}}>
                   Entrar
                 </button>
-              </form>
+                </a>
+                )}
+                
+              </div>
             </div>
           </div>
         </nav>
@@ -90,6 +144,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/pergunta/:id" element={<PerguntaScreen />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<Err />}></Route>
         </Routes>
       </main>

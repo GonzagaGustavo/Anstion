@@ -10,7 +10,6 @@ useEffect(() => {
         setPerguntas(res.data)
     })
 }, [])
-console.log(perguntas)
 
   return (
     <>

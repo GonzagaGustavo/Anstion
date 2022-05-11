@@ -4,6 +4,7 @@ const Sequelize = require("sequelize");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils.js");
 const sequelize = require("./../connection.js");
+const jwt = require("jsonwebtoken");
 
 const usuarios = sequelize.define("usuarios", {
   id: {
@@ -55,19 +56,24 @@ routeUser.post("/verifyLogin", async (req, res) => {
       };
       res.send(saves);
     } else {
-        res.send("nouser")
+      res.send("nouser");
     }
   }
 });
-routeUser.post("/getUser", async (req, res) => {
-  const info = await usuarios.findOne({
-    where: {
-      id: req.body.id,
-      email: req.body.email,
-    },
-  });
-  console.log(info);
-  res.send(info);
+routeUser.post("/getUser", (req, res) => {
+  const user = jwt.decode(req.body.token, process.env.JWT_SECRET);
+  if (user.id != req.body.id) {
+    res.send(false);
+    return;
+  } else {
+    const info = usuarios.findOne({
+      where: {
+        id: req.body.id,
+        email: user.email,
+      },
+    });
+    res.send(info);
+  }
 });
 routeUser.post("/getUserbyID", async (req, res) => {
   const info = await usuarios.findOne({
