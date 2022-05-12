@@ -1,48 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
-import api from "./../api.js";
-import Cookies from "js-cookie";
-import jwt from "jsonwebtoken";
+import { Context } from "../Functions/Context.js";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function AskQuestion() {
+  const { logged, login } = useContext(Context)
   const [text, setText] = useState("");
-  const [logged, setLogged] = useState(false);
   const history = useNavigate();
-
-  useEffect(() => {
-    if (Cookies.get("user_id") && Cookies.get("token")) {
-      let id = Cookies.get("user_id");
-        let token = Cookies.get("token");
-        //Decodificando o token e buscando as informações no DB
-        let user = jwt.decode(token, process.env.JWT_SECRET);
-        if (user.id == id) {
-          setLogged(true)
-        } else {
-          setLogged(false)
-        }
-    } else {
-      setLogged(false)
-    }
-  }, []);
 
   function fazerP() {
     if(logged) {
       if(text === "") {
-        alert("Escreva uma pergunta!")
+        toast.error("Escreva uma pergunta!")
       } else {
-        let token = Cookies.get("token");
-        let user = jwt.decode(token, process.env.JWT_SECRET);
         let info = {
-          user_id: user.id,
-          pergunta: text
+          pergunta: text,
+          user_id: login.id
         }
-        api.post("/perguntas/create", info).then(res => {
-          alert(res.data)
+        axios.post("/perguntas/create", info).then(res => {
+          toast.success(res.data)
         })
       }
     } else {
-      alert("Faça o login para fazer uma pergunta!")
+      toast.error("Escreva uma pergunta!")
     }
   }
   return (

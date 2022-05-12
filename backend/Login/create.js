@@ -60,13 +60,13 @@ routeUser.post("/verifyLogin", async (req, res) => {
     }
   }
 });
-routeUser.post("/getUser", (req, res) => {
+routeUser.post("/getUser", async (req, res) => {
   const user = jwt.decode(req.body.token, process.env.JWT_SECRET);
-  if (user.id != req.body.id) {
+  if (user.id != Number(req.body.id)) {
     res.send(false);
     return;
   } else {
-    const info = usuarios.findOne({
+    const info = await usuarios.findOne({
       where: {
         id: req.body.id,
         email: user.email,
