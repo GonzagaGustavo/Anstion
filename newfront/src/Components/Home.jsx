@@ -4,16 +4,26 @@ import axios from 'axios'
 
 function Home() {
 const [perguntas, setPerguntas] = useState([])
+const [loading, setLoading] = useState(true)
 
 useEffect(() => {
     axios.get('/perguntas/getQuestions').then(res => {
         setPerguntas(res.data)
+        setLoading(false)
     })
 }, [])
 
   return (
     <>
     <div className="container">
+      {loading ? (
+        <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      ) : (
+        <>
         {perguntas.map((pergunta) => (
           <div className="container-p" key={pergunta.id}>
             <a href={`/pergunta/${pergunta.id}`}>
@@ -31,6 +41,9 @@ useEffect(() => {
             </button>
           </div>
         ))}
+        </>
+      )}
+        
       </div>
       <a href="/askAQuestion" className="ask" title="Fazer uma pergunta">
         <BsFileEarmarkPlus className="icon-ask" />

@@ -29,13 +29,24 @@ const usuarios = sequelize.define("usuarios", {
 });
 usuarios.sync();
 
-routeUser.post("/createLogin", (req, res) => {
-  usuarios.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
+routeUser.post("/createLogin", async (req, res) => {
+  const tem = await usuarios.findOne({
+    where: {
+      email: req.body.email,
+    },
   });
-  res.send("Usuario Criado");
+  console.log(tem);
+  if (tem === null) {
+   usuarios.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 8),
+    });
+    res.send("Usuario Criado!");
+    return;
+  } else {
+    res.send("Já existe uma conta com esse email!")
+  }
 });
 
 routeUser.post("/verifyLogin", async (req, res) => {

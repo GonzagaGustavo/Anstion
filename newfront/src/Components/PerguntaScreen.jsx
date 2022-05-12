@@ -78,7 +78,7 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
       {respostas.length === 0 ? (
         <div className="no-res">
           <img src={triste} alt="" className="triste-svg" />
-          <h1>Ainda não há resposta para esta pergunta!</h1>
+          <h3>Ainda não há resposta para esta pergunta!</h3>
           <h1></h1>
         </div>
       ): (

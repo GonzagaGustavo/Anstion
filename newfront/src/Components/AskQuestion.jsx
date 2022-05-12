@@ -24,7 +24,7 @@ function AskQuestion() {
         })
       }
     } else {
-      toast.error("Escreva uma pergunta!")
+      toast.error("Faça o login para fazer a pergunta!")
     }
   }
   return (

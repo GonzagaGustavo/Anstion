@@ -13,6 +13,7 @@ import Login from "./Components/Login";
 import AskQuestion from "./Components/AskQuestion";
 import { Context } from "./Functions/Context";
 import Profile from "./Components/Profile";
+import CreateAcc from "./Components/CreateAcc";
 
 function App() {
   //Constante usada na funçao userName
@@ -73,7 +74,7 @@ function App() {
           }}
         >
           <div className="container-fluid">
-            <a className="navbar-brand logo" href="#">
+            <a className="navbar-brand logo" href="/">
               Anstion
             </a>
             <button
@@ -93,7 +94,7 @@ function App() {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+                {/* <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">
                     Home
                   </a>
@@ -137,7 +138,7 @@ function App() {
                 </li>
                 <li class="nav-item">
                   <a class="nav-link disabled">Disabled</a>
-                </li>
+                </li> */}
               </ul>
               <div className="d-flex">
                 {logged ? (
@@ -180,8 +181,9 @@ function App() {
           <Route path="/pergunta/:id" element={<PerguntaScreen />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/profile/:id" element={<Profile />}></Route>
-          <Route path="/AskAQuestion" element={<AskQuestion />}>
-          </Route><Route path="/*" element={<Err />}></Route>
+          <Route path="/AskAQuestion" element={<AskQuestion />}></Route>
+          <Route path="/createAccount" element={<CreateAcc />}></Route>
+          <Route path="/*" element={<Err />}></Route>
         </Routes>
       </main>
     </BrowserRouter>
