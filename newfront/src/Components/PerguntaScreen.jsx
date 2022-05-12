@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './../Functions/api';
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { MdKeyboardBackspace } from 'react-icons/md'
@@ -15,13 +15,14 @@ function PerguntaScreen() {
     const history = useNavigate();
 
 useEffect(() => {
-    //Pegando Pergunta
-    axios.post("/perguntas/getOneQuestion", { id: params.id }).then((res) => {
+  async function a() {
+  //Pegando Pergunta
+    await api.post("/perguntas/getOneQuestion", { id: params.id }).then((res) => {
         setPergunta(res.data[0]);
         setLoading(false)
       });
       //Pegando respostas
-    axios
+      await api
     .post("/respostas/getRespostas", { id: params.id })
     .then((res) => {
       setRespostas(res.data);
@@ -29,11 +30,12 @@ useEffect(() => {
     .catch((err) => {
       console.log(err);
     });
-    
+  }
+   a() 
 }, [])
 document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
 
-    function sendRes() {
+    async function sendRes() {
         if (text === "") {
             toast.error("Escreva alguma resposta!")
         } else {
@@ -41,7 +43,7 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
               pergunta_id: params.id,
               resposta: text,
             };
-            axios.post("/respostas/saveRes", info).then((res) => {
+            await api.post("/respostas/saveRes", info).then((res) => {
               toast.success(res.data);
               setText("")
             });

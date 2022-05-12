@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./../Functions/api";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import validator from "validator";
@@ -10,7 +10,7 @@ const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
 const { logged } = useContext(Context)
 
-function criar() {
+async function criar() {
     if(!name || !email || !password) {
         toast.error("Prencha todos os campos")
     } else {
@@ -23,7 +23,7 @@ function criar() {
                 email: email,
                 password: password
             }
-            axios.post("/createLogin", info).then(res => {
+            await api.post("/createLogin", info).then(res => {
                 if(res.data === "Usuario Criado!") {
                     toast.success(res.data)
                     setTimeout(() => window.location.href = "/../login", 2000)

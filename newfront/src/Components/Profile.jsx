@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./../Functions/api";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import svg from './../inDevelopment.svg'
@@ -9,13 +9,15 @@ function Profile() {
   const params = useParams();
 
   useEffect(() => {
-    axios.post("/getUserbyID", { id: params.id }).then((res) => {
+    async function a() {
+  await api.post("/getUserbyID", { id: params.id }).then((res) => {
       setLogin(res.data);
     });
-    axios.post("/perguntas/getQuestionByUser", { user_id: params.id }).then(res => {
+    await api.post("/perguntas/getQuestionByUser", { user_id: params.id }).then(res => {
       setPer(res.data)
   })
-  
+    }
+  a()
   }, [])
   return (
     <>

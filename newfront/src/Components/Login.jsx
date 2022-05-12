@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "./../Functions/api";
 import Cookies from 'js-cookie'
 import "./../App.css";
 
@@ -18,7 +18,7 @@ document.addEventListener('keypress', (e) => {
   }
 })
 
-function send() {
+async function send() {
   if(email === "" || senha === "") {
     document.querySelector(".err").innerText = "Email ou Senha Incorretos!"
   } else {
@@ -26,7 +26,7 @@ function send() {
         email: email,
         password: senha
     }
-    axios.post("/verifyLogin", form).then(res => {
+    await api.post("/verifyLogin", form).then(res => {
         if(res.data === "nouser") {
             document.querySelector(".err").innerText = "Email ou Senha Incorretos!"
         } else {

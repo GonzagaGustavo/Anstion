@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { Context } from "../Functions/Context.js";
-import axios from "axios";
+import api from "./../Functions/api";
 import { toast } from "react-toastify";
 
 function AskQuestion() {
@@ -10,7 +10,7 @@ function AskQuestion() {
   const [text, setText] = useState("");
   const history = useNavigate();
 
-  function fazerP() {
+ async function fazerP() {
     if(logged) {
       if(text === "") {
         toast.error("Escreva uma pergunta!")
@@ -19,7 +19,7 @@ function AskQuestion() {
           pergunta: text,
           user_id: login.id
         }
-        axios.post("/perguntas/create", info).then(res => {
+        await api.post("/perguntas/create", info).then(res => {
           toast.success(res.data)
         })
       }

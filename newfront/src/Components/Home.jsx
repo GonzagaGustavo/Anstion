@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { BsFileEarmarkPlus } from 'react-icons/bs'
-import axios from 'axios'
+import api from './../Functions/api'
 
 function Home() {
 const [perguntas, setPerguntas] = useState([])
 const [loading, setLoading] = useState(true)
 
 useEffect(() => {
-    axios.get('/perguntas/getQuestions').then(res => {
+ async function a() {
+    await api.get('/perguntas/getQuestions').then(res => {
         setPerguntas(res.data)
         setLoading(false)
     })
+  }
+    a()
 }, [])
 
   return (

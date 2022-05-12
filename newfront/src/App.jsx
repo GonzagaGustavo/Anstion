@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "./Functions/api";
 import React, { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -21,7 +21,8 @@ function App() {
   const { logged, login, setLogged, setLogin } = useContext(Context)
 
   useEffect(() => {
-    //Autenticação de usuario
+    async function a() {
+      //Autenticação de usuario
     if (Cookies.get("user_id") && Cookies.get("token")) {
       let id = Cookies.get("user_id");
       let token = Cookies.get("token");
@@ -30,7 +31,7 @@ function App() {
         id: id,
         token: token,
       };
-      axios.post("/getUser", infos).then((res) => {
+      await api.post("/getUser", infos).then((res) => {
         console.log(res);
         if (res.data === false) {
           setLogged(false);
@@ -44,6 +45,8 @@ function App() {
       setLogged(false);
     }
     console.log(login);
+    }
+    a()
   }, []);
 
   function signout() {
