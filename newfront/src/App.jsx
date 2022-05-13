@@ -44,7 +44,6 @@ function App() {
     } else {
       setLogged(false);
     }
-    console.log(login);
     }
     a()
   }, []);
@@ -81,7 +80,7 @@ function App() {
               Anstion
             </a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
