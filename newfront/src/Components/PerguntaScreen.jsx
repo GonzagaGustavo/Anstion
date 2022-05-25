@@ -32,7 +32,7 @@ useEffect(() => {
     });
   }
    a() 
-}, [])
+}, [params.id])
 document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
 
     async function sendRes() {
@@ -81,7 +81,6 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
         <div className="no-res">
           <img src={triste} alt="" className="triste-svg" />
           <h3>Ainda não há resposta para esta pergunta!</h3>
-          <h1></h1>
         </div>
       ): (
         <></>

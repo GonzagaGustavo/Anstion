@@ -46,7 +46,7 @@ function App() {
     }
     }
     a()
-  }, []);
+  }, [setLogged, setLogin]);
 
   function signout() {
     Cookies.remove("user_id");

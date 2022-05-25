@@ -18,7 +18,7 @@ function Profile() {
   })
     }
   a()
-  }, [])
+  }, [params.id])
   return (
     <>
     <div className="container">
