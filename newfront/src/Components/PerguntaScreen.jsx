@@ -1,10 +1,10 @@
-import api from './../Functions/api';
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { MdKeyboardBackspace } from 'react-icons/md'
 import triste from './../triste.svg'
 import { RiEmotionHappyFill } from 'react-icons/ri'
 import { toast } from "react-toastify";
+import axios from 'axios';
 
 function PerguntaScreen() {
   const [loading, setLoading] = useState(true)
@@ -17,13 +17,13 @@ function PerguntaScreen() {
 useEffect(() => {
   async function a() {
   //Pegando Pergunta
-    await api.post("/perguntas/getOneQuestion", { id: params.id }).then((res) => {
+    await axios.post("https://anstion.herokuapp.com/perguntas/getOneQuestion", { id: params.id }).then((res) => {
         setPergunta(res.data[0]);
         setLoading(false)
       });
       //Pegando respostas
-      await api
-    .post("/respostas/getRespostas", { id: params.id })
+      await axios
+    .post("https://anstion.herokuapp.com/respostas/getRespostas", { id: params.id })
     .then((res) => {
       setRespostas(res.data);
     })
@@ -43,7 +43,7 @@ document.title = `${pergunta.pergunta}`.substring(0, 35) + " - AnsTion"
               pergunta_id: params.id,
               resposta: text,
             };
-            await api.post("/respostas/saveRes", info).then((res) => {
+            await axios.post("https://anstion.herokuapp.com/respostas/saveRes", info).then((res) => {
               toast.success(res.data);
               setText("")
             });

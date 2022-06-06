@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { Context } from "../Functions/Context.js";
-import api from "./../Functions/api";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 function AskQuestion() {
   const { logged, login } = useContext(Context)
@@ -19,7 +19,7 @@ function AskQuestion() {
           pergunta: text,
           user_id: login.id
         }
-        await api.post("/perguntas/create", info).then(res => {
+        await axios.post("https://anstion.herokuapp.com/perguntas/create", info).then(res => {
           toast.success(res.data)
         })
       }

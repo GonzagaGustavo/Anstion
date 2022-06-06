@@ -1,8 +1,8 @@
-import api from "./../Functions/api";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import validator from "validator";
 import { Context } from "../Functions/Context";
+import axios from "axios";
 
 function CreateAcc() {
 const [name, setName] = useState("")
@@ -23,7 +23,7 @@ async function criar() {
                 email: email,
                 password: password
             }
-            await api.post("/createLogin", info).then(res => {
+            await axios.post("https://anstion.herokuapp.com/createLogin", info).then(res => {
                 if(res.data === "Usuario Criado!") {
                     toast.success(res.data)
                     setTimeout(() => window.location.href = "/../login", 2000)

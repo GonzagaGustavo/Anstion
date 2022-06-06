@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import api from "./../Functions/api";
 import Cookies from 'js-cookie'
 import "./../App.css";
+import axios from "axios";
 
 function Login() {
 const [email, setEmail] = useState("")
@@ -26,7 +26,7 @@ async function send() {
         email: email,
         password: senha
     }
-    await api.post("/verifyLogin", form).then(res => {
+    await axios.post("https://anstion.herokuapp.com/verifyLogin", form).then(res => {
         if(res.data === "nouser") {
             document.querySelector(".err").innerText = "Email ou Senha Incorretos!"
         } else {

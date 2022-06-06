@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const dotenv = require('dotenv')
+const cors = require('cors')
 dotenv.config()
 
 const app = express()
@@ -11,6 +12,7 @@ const routerR = require("./Perguntas/RoutesR.js")
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: 'true'}))
+app.use(cors())
 
 app.use(routeUser)
 app.use("/perguntas", routerP)

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BsFileEarmarkPlus } from 'react-icons/bs'
-// import api from './../Functions/api.js'
 
 function Home() {
 const [perguntas, setPerguntas] = useState([])

@@ -1,7 +1,7 @@
-import api from "./../Functions/api";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import svg from './../inDevelopment.svg'
+import axios from "axios";
 
 function Profile() {
   const [login, setLogin] = useState([]);
@@ -10,10 +10,10 @@ function Profile() {
 
   useEffect(() => {
     async function a() {
-  await api.post("/getUserbyID", { id: params.id }).then((res) => {
+  await axios.post("https://anstion.herokuapp.com/getUserbyID", { id: params.id }).then((res) => {
       setLogin(res.data);
     });
-    await api.post("/perguntas/getQuestionByUser", { user_id: params.id }).then(res => {
+    await axios.post("https://anstion.herokuapp.com/perguntas/getQuestionByUser", { user_id: params.id }).then(res => {
       setPer(res.data)
   })
     }
