@@ -1,4 +1,4 @@
-import api from "./Functions/api";
+// import api from "./Functions/api";
 import React, { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -14,6 +14,7 @@ import AskQuestion from "./Components/AskQuestion";
 import { Context } from "./Functions/Context";
 import Profile from "./Components/Profile";
 import CreateAcc from "./Components/CreateAcc";
+import axios from "axios";
 
 function App() {
   //Constante usada na funçao userName
@@ -31,7 +32,7 @@ function App() {
         id: id,
         token: token,
       };
-      await api.post("/getUser", infos).then((res) => {
+      await axios.post("https://anstion.herokuapp.com/getUser", infos).then((res) => {
         console.log(res);
         if (res.data === false) {
           setLogged(false);

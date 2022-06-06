@@ -1,6 +1,7 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BsFileEarmarkPlus } from 'react-icons/bs'
-import api from './../Functions/api.js'
+// import api from './../Functions/api.js'
 
 function Home() {
 const [perguntas, setPerguntas] = useState([])
@@ -8,7 +9,7 @@ const [loading, setLoading] = useState(true)
 
 useEffect(() => {
  async function a() {
-    await api.get('/perguntas/getQuestions').then(res => {
+    await axios.get('https://anstion.herokuapp.com/perguntas/getQuestions').then(res => {
         setPerguntas(res.data)
         setLoading(false)
     })
